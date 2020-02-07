@@ -19,8 +19,8 @@ exports.up = function(knex) {
             tbl.string('step_name', 255).notNullable();
             tbl.integer('step_order').notNullable();
             tbl.integer('recipes_id')
-                .notNullable()
                 .unsigned()
+                .notNullable()
                 .references('recipes.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
@@ -29,8 +29,8 @@ exports.up = function(knex) {
             tbl.increments();
             tbl.string('chef_name', 255).notNullable().unique();
             tbl.integer('recipes_id')
-                .notNullable()
                 .unsigned()
+                .notNullable()
                 .references('recipes.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');

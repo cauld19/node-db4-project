@@ -4,10 +4,8 @@ module.exports = {
     find,
     getShoppingList,
     findById,
-    // findSteps,
-    // remove,
-    // update,
-    // addStep
+    getInstructions,
+    getAllInstructions,
 };
 
 function find() {
@@ -30,3 +28,21 @@ function getShoppingList(recipe_id) {
       .select("r.recipe_name", "i.ingredient_name", "i.ingredient_amount_cups", "i.ingredient_amount_oz", "i.ingredient_amount_grams")
       .where({ recipe_id });
   }
+
+
+// `getInstructions(recipe_id)`: should return a list of step by step instructions for preparing a recipe
+
+
+function getInstructions(recipe_id) {
+    return db("recipes as r")
+        .join("steps as s", "r.id", "s.recipes_id" )
+        .select("r.recipe_name", "s.step_name", "s.step_order")
+        .where('r.id', recipe_id )
+}
+
+
+
+function getAllInstructions() {
+    return db('steps')
+}
+
